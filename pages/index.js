@@ -13,7 +13,7 @@ export default function Home() {
   
   function pullUpCreateState(newText) {
     setCreateBody(newText);
-    
+
   }
 
   return (
@@ -26,5 +26,5 @@ export default function Home() {
           <Create pullUpCreateState={pullUpCreateState}/>
         </div>
       </div>
-  )
+  );
 }
