@@ -10,6 +10,7 @@ function create(props) {
 
   function handlePullUpCreateState() {
       props.pullUpCreateState(createBody);
+      setCreateBody('');
   }
 
   
@@ -24,6 +25,7 @@ function create(props) {
             <textarea
             onChange={e => setCreateBody(e.target.value)}
             className={styles.createBody}
+            value={createBody}
             >
             </textarea>
         </div>

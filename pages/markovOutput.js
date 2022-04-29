@@ -7,6 +7,12 @@ import React, { useState, useEffect } from 'react';
 function markovOutput(props) {
     const [markovOutput, setMarkov] = useState('');
 
+    function handleClick(event) {
+        event.preventDefault();
+        props.pullUpMarkovOutputState(markovOutput);
+        setMarkov('');
+    }
+
     useEffect(() => setMarkov(markovOutput + props.markovState), [props.markovState]);
 
     return (
@@ -19,7 +25,12 @@ function markovOutput(props) {
                 >
                 </textarea>
             </div>
-            <Button primary>ReJumble Me?</Button>
+            <Button 
+                primary
+                onClick={handleClick}
+            >
+            ReJumble Me?
+            </Button>
         </div>
     );
 }

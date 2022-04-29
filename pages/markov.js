@@ -7,13 +7,17 @@ function markov(props) {
   const [markovInput, setMarkov] = useState('');
 
   useEffect(() => setMarkov(markovInput + props.createBody), [props.createBody]);
+  useEffect(() => setMarkov(markovInput + props.markovOutputState), [props.markovOutputState]);
+  // so i have props.markovState here getting pulled in from markovOutput
+  // I need to integrate this with the data coming in from create
+  // figure out yer data flow
 
-  async function handleClick(event) {
-    event.preventDefault();
+  async function handleClick() {
+    // event.preventDefault();
+    setMarkov('');
     let markov = new MarkovGenerator(markovInput, 5);
-    let markovOutput = markov.generateText(250);
-    console.log('markovOutput', markovOutput);
-    props.pullUpMarkovState(markovOutput);
+    let markovState = markov.generateText(250);
+    props.pullUpMarkovState(markovState);
   }
 
   function MarkovGenerator(sourceText, order) {

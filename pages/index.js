@@ -11,20 +11,26 @@ export default function Home() {
 
   const [createBody, setCreateBody] = useState('');
   const [markovState, setMarkovState] = useState('');
+  const [markovOutputState, setMarkovOutputState] = useState('');
   
   function pullUpCreateState(newText) {
     setCreateBody(newText);
   }
 
   function pullUpMarkovState(markovState) {
-    setMarkovState(markovState)
+    setMarkovState(markovState);
+  }
+
+  function pullUpMarkovOutputState(markovOutputState) {
+    console.log('the big shebang:', markovOutputState);
+    setMarkovOutputState(markovOutputState);
   }
 
   return (
       <div>
         <div className={styles.markovs}>
-          <Markov pullUpMarkovState={pullUpMarkovState} createBody={createBody}/>
-          <MarkovOutput markovState={markovState}/>
+          <Markov markovOutputState={markovOutputState} pullUpMarkovState={pullUpMarkovState} createBody={createBody}/>
+          <MarkovOutput markovState={markovState} pullUpMarkovOutputState={pullUpMarkovOutputState}/>
         </div>
         <div>
           <Create pullUpCreateState={pullUpCreateState}/>
