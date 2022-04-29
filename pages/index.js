@@ -10,17 +10,21 @@ import React, { useState } from 'react';
 export default function Home() {
 
   const [createBody, setCreateBody] = useState('');
+  const [markovState, setMarkovState] = useState('');
   
   function pullUpCreateState(newText) {
     setCreateBody(newText);
+  }
 
+  function pullUpMarkovState(markovState) {
+    setMarkovState(markovState)
   }
 
   return (
       <div>
         <div className={styles.markovs}>
-          <Markov createBody={createBody}/>
-          <MarkovOutput />
+          <Markov pullUpMarkovState={pullUpMarkovState} createBody={createBody}/>
+          <MarkovOutput markovState={markovState}/>
         </div>
         <div>
           <Create pullUpCreateState={pullUpCreateState}/>

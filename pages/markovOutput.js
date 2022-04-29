@@ -1,11 +1,13 @@
 import 'semantic-ui-css/semantic.min.css';
 import styles from '../css/Markov.module.css';
 import { Button } from 'semantic-ui-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
-function markovOutput() {
+function markovOutput(props) {
     const [markovOutput, setMarkov] = useState('');
+
+    useEffect(() => setMarkov(markovOutput + props.markovState), [props.markovState]);
 
     return (
         <div>
@@ -13,6 +15,7 @@ function markovOutput() {
                 <textarea 
                     onChange={e => setMarkov(e.target.value)}
                     className={styles.markov}
+                    value={markovOutput}
                 >
                 </textarea>
             </div>
