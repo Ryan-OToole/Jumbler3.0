@@ -5,27 +5,21 @@ import styles from '../css/Create.module.css';
 
 
 function create(props) {
-  const [createBody, setCreateBody] = useState('');
-  const [createTitle, setCreateTitle] = useState('');
+  const [createInput, setCreateInput] = useState('');
 
   function handlePullUpCreateState() {
-      props.pullUpCreateState(createBody);
-      setCreateBody('');
+      props.pullUpCreateState(createInput);
+      setCreateInput('');
   }
 
   
   return (
     <div>
-        <input 
-            onChange={e => setCreateTitle(e.target.value)}
-            className={styles.createTitle}
-        >
-        </input>
         <div>
             <textarea
-            onChange={e => setCreateBody(e.target.value)}
-            className={styles.createBody}
-            value={createBody}
+            onChange={e => setCreateInput(e.target.value)}
+            className={styles.createInput}
+            value={createInput}
             >
             </textarea>
         </div>
