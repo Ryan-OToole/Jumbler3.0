@@ -5,23 +5,29 @@ import React, { useState, useEffect } from 'react';
 
 
 function markovOutput(props) {
-    const [markovOutput, setMarkov] = useState('');
+    const [markovOutputState, setMarkovOutputState] = useState('');
+    
+    useEffect(() => setMarkovOutputState(markovOutputState + props.markovOutputTruth), [props.markovOutputTruth]);
 
-    function handleClick(event) {
-        event.preventDefault();
-        props.pullUpMarkovOutputState(markovOutput);
-        setMarkov('');
+    function handleClick() {
+        props.reJumble(markovOutputState);
+        props.createHash(markovOutputState);
+        setMarkovOutputState('');
     }
 
-    useEffect(() => setMarkov(markovOutput + props.markovState), [props.markovState]);
+    function handleChange(e) {
+        setMarkovOutputState(e.target.value);
+        props.createHash(e);
+    }
+
 
     return (
         <div>
             <div>
                 <textarea 
-                    onChange={e => setMarkov(e.target.value)}
+                    onChange={e => handleChange(e)}
                     className={styles.markov}
-                    value={markovOutput}
+                    value={markovOutputState}
                 >
                 </textarea>
             </div>

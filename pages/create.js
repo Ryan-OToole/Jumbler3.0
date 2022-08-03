@@ -3,29 +3,32 @@ import 'semantic-ui-css/semantic.min.css';
 import { Button } from 'semantic-ui-react';
 import styles from '../css/Create.module.css';
 
-
 function create(props) {
-  const [createInput, setCreateInput] = useState('');
+  const [createState, setCreateState] = useState('');
 
-  function handlePullUpCreateState() {
-      props.pullUpCreateState(createInput);
-      setCreateInput('');
+  function sendToJumbler() {
+      props.sendToJumbler(createState);
+      setCreateState('');
   }
-
+  
+  function handleChange(e) {
+    setCreateState(e.target.value);
+    props.createHash(e);
+  }
   
   return (
     <div>
         <div>
             <textarea
-            onChange={e => setCreateInput(e.target.value)}
+            onChange={e => handleChange(e)}
             className={styles.createInput}
-            value={createInput}
+            value={createState}
             >
             </textarea>
         </div>
         <div className={styles.button}>
             <Button 
-            onClick={ () => handlePullUpCreateState() }
+            onClick={ () => sendToJumbler() }
             >
             Jumble It
             </Button>

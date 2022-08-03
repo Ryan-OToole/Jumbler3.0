@@ -2,24 +2,41 @@ import React, { useState, useEffect } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import styles from '../css/Markov.module.css';
 import { Button } from 'semantic-ui-react';
+// import { ethers } from 'ethers';
+// import Jumbler from '../src/artifacts/contracts/Jumbler.sol/Jumbler.json';
+
+// const jumblerAddress = '0xdfA652ba46f72a877500fDaC5b6E212212d53549';
 
 function markov(props) {
-  const [markovInput, setMarkov] = useState('');
+  const [markovState, setMarkov] = useState('');
 
-  useEffect(() => setMarkov(markovInput + props.createBody), [props.createBody]);
-  useEffect(() => setMarkov(markovInput + props.markovOutputState), [props.markovOutputState]);
+  useEffect(() => setMarkov(markovState + props.markovTruth), [props.markovTruth]);
   // so i have props.markovState here getting pulled in from markovOutput
   // I need to integrate this with the data coming in from create
   // figure out yer data flow
 
-  async function handleClick() {
-    // event.preventDefault();
+  function handleClick() {
+    let markov = new MarkovGenerator(markovState, 5);
+    let markovOutputTruthToBe = markov.generateText(250);
+    props.jumble(markovOutputTruthToBe);
+    props.createHash(markovOutputTruthToBe);
     setMarkov('');
-    let markov = new MarkovGenerator(markovInput, 5);
-    let markovState = markov.generateText(250);
-    props.pullUpMarkovState(markovState);
+    // if (typeof window.ethereum !== 'undefined') {
+    //   await this.requestAccount();
+    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //   const signer = provider.getSigner();
+    //   const contract = new ethers.Contract(jumblerAddress, Jumbler.abi, signer);
+    //   const transaction = await contract.setPoem(markovState);
+    //   await transaction.wait();
+    //   const data = await contract.showPoem();
+    // }
   }
 
+  function handleChange(e) {
+    setMarkov(e.target.value);
+    props.createHash(e);
+  }
+  
   function MarkovGenerator(sourceText, order) {
 
     this.sourceText = sourceText;
@@ -91,19 +108,18 @@ function markov(props) {
   
     }
   }
-  
 
   return (
     <div>
       <div>
         <textarea 
           className={styles.markov}
-          onChange={e => setMarkov(e.target.value)}
-          value={markovInput}
+          onChange={e => handleChange(e)}
+          value={markovState}
         >
         </textarea>
       </div>
-      <Button 
+      <Button
       primary
       onClick={handleClick}
       >

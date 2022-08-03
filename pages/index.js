@@ -5,36 +5,66 @@ import createStyles from '../css/Create.module.css';
 import Markov from './markov';
 import MarkovOutput from './markovOutput';
 import Create from './create';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import web3 from '../web3.js';
 
 export default function Home() {
 
-  const [createBody, setCreateBody] = useState('');
-  const [markovState, setMarkovState] = useState('');
-  const [markovOutputState, setMarkovOutputState] = useState('');
+  const [hash, setHash] = useState('');
+  const [markovTruth, setMarkovTruth] = useState('');
+  const [markovOutputTruth, setMarkovOutputTruth] = useState('');
+  const [hashInput, setHashInput] = useState('');
+  const crypto = require('crypto');
+
+      // useEffect(() => setCreateTruth(createTruth + props.createState), [props.createState]);
+      // useEffect(() => setMarkovTruth(markovTruth + props.markovOutputTruth), [props.markovOutputTruth]);
+      // useEffect(() => setMarkovOutputTruth(markovOutputTruth + props.markovState), [props.markovState]);
+
+  // web3.eth.getAccounts()
+  //   .then(console.log);
   
-  function pullUpCreateState(newText) {
-    setCreateBody(newText);
+  function sendToJumbler(state) {
+    setMarkovTruth(state);
   }
 
-  function pullUpMarkovState(markovState) {
-    setMarkovState(markovState);
+  function jumble(state) {
+    setMarkovOutputTruth(state);
   }
 
-  function pullUpMarkovOutputState(markovOutputState) {
-    console.log('the big shebang:', markovOutputState);
-    setMarkovOutputState(markovOutputState);
+  function reJumble(state) {
+    setMarkovTruth(state);
+  }
+
+  function createHash(e) {
+    if (typeof e == 'object') {
+      setHashInput(e.target.value);
+      const hashPwd = crypto.createHash('sha256')
+          .update(e.target.value)
+          .digest('hex')
+      console.log("Hash Value: " + hashPwd);
+      setHash(hashPwd);
+    }
+    if (typeof e == 'string') {
+      setHashInput(e);
+      const hashPwd = crypto.createHash('sha256')
+          .update(e)
+          .digest('hex')
+      console.log("Hash Value: " + hashPwd);
+      setHash(hashPwd);
+    }
   }
 
   return (
-      <div>
+      <div onChange={createHash}>
         <div className={styles.markovs}>
-          <Markov markovOutputState={markovOutputState} pullUpMarkovState={pullUpMarkovState} createBody={createBody}/>
-          <MarkovOutput markovState={markovState} pullUpMarkovOutputState={pullUpMarkovOutputState}/>
+          <Markov createHash={createHash} markovTruth={markovTruth} jumble={jumble}/>
+          <MarkovOutput createHash={createHash} reJumble={reJumble} markovOutputTruth={markovOutputTruth}/>
         </div>
         <div>
-          <Create pullUpCreateState={pullUpCreateState}/>
+          <Create createHash={createHash} sendToJumbler={sendToJumbler}/>
         </div>
+        <h2>{hashInput}</h2>
+        <h1>{hash}</h1>
       </div>
   );
 }
