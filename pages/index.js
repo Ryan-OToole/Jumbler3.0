@@ -36,12 +36,15 @@ export default function Home() {
   }
 
   function createHash(e) {
+    let regex = /([8]{4,})/
     if (typeof e == 'object') {
+      let value = e.target.value
       setHashInput(e.target.value);
       const hashPwd = crypto.createHash('sha256')
-          .update(e.target.value)
+          .update(value)
           .digest('hex')
       console.log("Hash Value: " + hashPwd);
+      console.log('regex.test.', regex.test(hashPwd))
       setHash(hashPwd);
     }
     if (typeof e == 'string') {
@@ -50,6 +53,7 @@ export default function Home() {
           .update(e)
           .digest('hex')
       console.log("Hash Value: " + hashPwd);
+      console.log('regex.test.', regex.test(hashPwd))
       setHash(hashPwd);
     }
   }
