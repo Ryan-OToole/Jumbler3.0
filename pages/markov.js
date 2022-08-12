@@ -109,6 +109,12 @@ function markov(props) {
     }
   }
 
+  function showNFTBTN() {
+    if (parseInt(markovState.length) >= 1 && props.match30 || props.match2X) {
+        return <button className={styles.pinkbutton}> Mint 3.0 NFT?</button>;
+    }
+}
+
   return (
     <div>
       <div>
@@ -125,15 +131,8 @@ function markov(props) {
       >
       Jumble Me?
       </button>
-      { props.match30 || props.match2X && markovState != '' ?
-          <button
-            primary
-            className={styles.pinkbutton}
-          >
-          Mint 3.0 NFT?
-          </button>
-          :
-          null
+      {
+        showNFTBTN()
       }
     </div>
   );

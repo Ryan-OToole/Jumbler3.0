@@ -21,6 +21,12 @@ function markovOutput(props) {
         props.createHash(e);
     }
 
+    function showNFTBTN() {
+        console.log('markovOutputState.length', markovOutputState.length);
+        if (parseInt(markovOutputState.length) >= 1 && props.match30 || props.match2X) {
+            return <button className={styles.greenbutton}> Mint 3.0 NFT? </button>;
+        }
+    }
 
     return (
         <div>
@@ -38,16 +44,7 @@ function markovOutput(props) {
             >
                 Send back to Jumbler?
             </button>
-            { props.match30 || props.match2X && markovOutputState != '' ?
-          <button
-            primary
-            className={styles.greenbutton}
-          >
-          Mint 3.0 NFT?
-          </button>
-          :
-          null
-      }
+            {showNFTBTN()}
         </div>
     );
 }

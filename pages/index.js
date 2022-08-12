@@ -92,7 +92,7 @@ export default function Home() {
           <div className={indexStyles.footercontainer}>
             <div className={styles.markovs}>
               <Markov match30={match30} match2X={match2X} createHash={createHash} markovTruth={markovTruth} jumble={jumble}/>
-              <MarkovOutput match30={match30}  createHash={createHash} reJumble={reJumble} markovOutputTruth={markovOutputTruth}/>
+              <MarkovOutput match30={match30} match2X={match2X} createHash={createHash} reJumble={reJumble} markovOutputTruth={markovOutputTruth}/>
             </div>
             <div>
               {/* <Create createHash={createHash} sendToJumbler={sendToJumbler}/> */}
