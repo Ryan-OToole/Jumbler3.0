@@ -1,0 +1,45 @@
+.app {
+    height: 100vh;
+    background-color: #0d1116;
+    overflow: scroll;
+    text-align: center;
+  }
+  
+  .container {
+    height: 100%;
+    background-color: #0d1116;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .headercontainer {
+    padding-top: 30px;
+  }
+
+  .footercontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  
+  /* .header {
+
+  } */
+  
+  .subtext {
+    font-size: 25px;
+    color: white;
+  }
+  
+  .gradienttext {
+    background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  

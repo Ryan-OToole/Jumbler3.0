@@ -1,5 +1,6 @@
 import 'semantic-ui-css/semantic.min.css';
 import styles from '../css/Markov.module.css';
+import stylesOutput from '../css/MarkovOutput.module.css';
 import { Button } from 'semantic-ui-react';
 import React, { useState, useEffect } from 'react';
 
@@ -31,12 +32,22 @@ function markovOutput(props) {
                 >
                 </textarea>
             </div>
-            <Button 
-                primary
+            <button 
+                className={stylesOutput.pinkbutton}
                 onClick={handleClick}
             >
-            ReJumble Me?
-            </Button>
+                Send back to Jumbler?
+            </button>
+            { props.match30 || props.match2X && markovOutputState != '' ?
+          <button
+            primary
+            className={styles.greenbutton}
+          >
+          Mint 3.0 NFT?
+          </button>
+          :
+          null
+      }
         </div>
     );
 }

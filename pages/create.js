@@ -26,13 +26,12 @@ function create(props) {
             >
             </textarea>
         </div>
-        <div className={styles.button}>
+        <div>
             <Button 
             onClick={ () => sendToJumbler() }
             >
-            Jumble It
+            Send to Jumbler
             </Button>
-            <Button>Mint It</Button>
         </div>
     </div>
   );

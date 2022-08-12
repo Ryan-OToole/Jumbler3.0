@@ -119,12 +119,22 @@ function markov(props) {
         >
         </textarea>
       </div>
-      <Button
-      primary
-      onClick={handleClick}
+      <button
+        onClick={handleClick}
+        className={styles.greenbutton}
       >
       Jumble Me?
-      </Button>
+      </button>
+      { props.match30 || props.match2X && markovState != '' ?
+          <button
+            primary
+            className={styles.pinkbutton}
+          >
+          Mint 3.0 NFT?
+          </button>
+          :
+          null
+      }
     </div>
   );
 }
