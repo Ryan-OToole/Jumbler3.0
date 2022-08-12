@@ -1,6 +1,6 @@
-# Basic Sample Hardhat Project
+# Jumbler 3.0
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This project uses a Markov generator to help with creative idea generation. It also uses a SHA-256 hashing algorithm and will have functionality to combine poems with artwork and see the hash. You will be able to mint an NFT of the artwork at any point and recieve special metadata if its hash meets rarity criteria. Four 0s are rare, the more 0s the more rare. 
 
 Try running some of the following tasks:
 
