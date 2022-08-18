@@ -15,7 +15,7 @@ export default function Home() {
   const [markovOutputTruth, setMarkovOutputTruth] = useState('');
   const [hashInput, setHashInput] = useState('');
   const crypto = require('crypto');
-
+  // comment for testing ignore this
       // useEffect(() => setCreateTruth(createTruth + props.createState), [props.createState]);
       // useEffect(() => setMarkovTruth(markovTruth + props.markovOutputTruth), [props.markovOutputTruth]);
       // useEffect(() => setMarkovOutputTruth(markovOutputTruth + props.markovState), [props.markovState]);
